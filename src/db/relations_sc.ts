@@ -111,11 +111,11 @@ export const vendorRelations = relations(vendorsTable, ({ many }) => ({
 // Reviews
 export const reviewsRelations = relations(reviewsTable, ({ one }) => ({
   product: one(productTable, {
-    fields: [reviewsTable.productId], // Menyambungkan dengan productId
+    fields: [reviewsTable.productId], 
     references: [productTable.id],
   }),
   customer: one(CustomerTable, {
-    fields: [reviewsTable.customerId], // Menyambungkan dengan customerId
+    fields: [reviewsTable.customerId], 
     references: [CustomerTable.id],
   }),
 }));
@@ -126,7 +126,7 @@ export const paymentRelations = relations(paymentsTable, ({ one }) => ({
     references: [OrderTable.orderId],
   }),
   customer: one(CustomerTable, {
-    fields: [paymentsTable.customerId], // Jika ada kolom customerId pada paymentsTable
+    fields: [paymentsTable.customerId], 
     references: [CustomerTable.id],
   }),
 }));
