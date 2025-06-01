@@ -6,7 +6,7 @@ import { app } from '../app';
 let server: any;
 let token: string;
 
-// Set environment variable for JWT_SECRET
+
 const jwtSecret = process.env.JWT_SECRET;
 
 function toRequest(req: IncomingMessage): Promise<Request> {
@@ -81,7 +81,7 @@ describe('Authentication Endpoints', () => {
         password: 'password123',
       });
 
-    expect(response.status).toBe(201); // Expecting 201 for successful user registration
+    expect(response.status).toBe(201); 
     expect(response.body.message).toBe('User berhasil ditambahkan');
   });
 
@@ -93,7 +93,7 @@ describe('Authentication Endpoints', () => {
         password: 'password123',
       });
 
-    expect(response.status).toBe(200); // Expecting 200 for successful login
+    expect(response.status).toBe(200); 
     expect(response.body.token).toBeDefined();
     token = response.body.token;
   });
@@ -106,8 +106,8 @@ describe('Authentication Endpoints', () => {
         password: 'wrongpassword',
       });
 
-    expect(response.status).toBe(401); // Expecting 401 for failed login
-    expect(response.body.message).toBe('ga ada');  // Expected failure message
+    expect(response.status).toBe(401); 
+    expect(response.body.message).toBe('ga ada');  
   });
 
   it('should access a protected route with a valid token', async () => {
@@ -115,14 +115,14 @@ describe('Authentication Endpoints', () => {
       .get('/users/protected-route')
       .set('Authorization', `Bearer ${token}`);
 
-    expect(response.status).toBe(200); // Expecting 200 for protected route access
+    expect(response.status).toBe(200); 
     expect(response.body.message).toBe('This is a protected route');
   });
 
   it('should not access a protected route without a token', async () => {
     const response = await request(server).get('/users/protected-route');
 
-    expect(response.status).toBe(401); // Expecting 401 for missing token
+    expect(response.status).toBe(401); 
     expect(response.body.error).toBe('Token is required');
   });
 
@@ -131,7 +131,7 @@ describe('Authentication Endpoints', () => {
       .get('/users/protected-route')
       .set('Authorization', 'Bearer invalidtoken');
 
-    expect(response.status).toBe(401); // Expecting 401 for invalid token
+    expect(response.status).toBe(401); 
     expect(response.body.error).toBe('Invalid or expired token');
   });
 });

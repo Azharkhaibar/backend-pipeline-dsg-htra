@@ -173,22 +173,17 @@ const adminProfileSchema = z.object({
     .regex(/[@$!%*?&]/, { message: "Password harus mengandung karakter spesial" }),
 });
 
-// admin profile
+
 adminController.post("/", zValidator("json", adminProfileSchema), async (c) => {
   try {
     const db = await DBConnection();
     const body = c.req.valid("json");
-
-    // Cek email
     const existingAdmin = await db.select().from(adminTable).where(eq(adminTable.email, body.email));
     if (existingAdmin.length > 0) {
       return c.json({ status: 400, message: "Email sudah terdaftar" }, 400);
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(body.password, 10);
-
-    // Insert ke admin_profile
     const resultProfile = await db
       .insert(adminProfileTable)
       .values({
@@ -207,7 +202,6 @@ adminController.post("/", zValidator("json", adminProfileSchema), async (c) => {
       throw new Error("Gagal menyimpan data admin profile");
     }
 
-    // Insert ke admin
     const resultAdmin = await db
       .insert(adminTable)
       .values({
@@ -262,8 +256,6 @@ adminController.post(
     try {
       const db = await DBConnection();
       const { email, password } = c.req.valid("json");
-
-      // Find admin
       const [admin] = await db.select().from(adminTable).where(eq(adminTable.email, email)).limit(1);
 
       if (!admin) {
