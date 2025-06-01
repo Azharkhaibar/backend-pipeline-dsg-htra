@@ -1,0 +1,1 @@
+ALTER TABLE `orders` MODIFY COLUMN `customer_id` int NOT NULL;

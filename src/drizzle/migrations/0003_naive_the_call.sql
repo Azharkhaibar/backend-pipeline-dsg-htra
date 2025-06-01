@@ -1,0 +1,1 @@
+ALTER TABLE `tasks` MODIFY COLUMN `deleted_at` timestamp DEFAULT null;
