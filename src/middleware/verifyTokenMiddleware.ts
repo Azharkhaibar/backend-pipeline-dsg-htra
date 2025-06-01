@@ -34,7 +34,7 @@ export const verifyTokenMiddleware = async (c: Context, next: Next) => {
     }
 
     c.set("user", decoded); // ✅
-    await next(); // ✅ lanjutkan ke route berikutnya
+    await next(); 
   } catch (err) {
     return c.json({ status: 401, message: "Invalid or expired token" }, 401);
   }

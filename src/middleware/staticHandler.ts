@@ -5,7 +5,7 @@ export const staticHandler = (req: any, res: any): boolean => {
   const url = req.url || "";
   const staticPrefix = "/uploads/product/";
   if (url.startsWith(staticPrefix)) {
-    const filePath = path.join(process.cwd(), url); // gunakan cwd agar path aman
+    const filePath = path.join(process.cwd(), url); 
     if (fs.existsSync(filePath)) {
       const ext = path.extname(filePath).toLowerCase();
       const contentType =
