@@ -110,6 +110,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["src/**/*.ts", "src/types/hono.types.ts", "sc_todo.ts"],
+  "include": ["src/**/*.ts", "src/types/hono.types.ts", "src/db/schema/sc_todo.ts"],
   "exclude": ["node_modules"]
 }

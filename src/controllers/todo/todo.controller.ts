@@ -2,7 +2,7 @@ import { asc, desc, eq, like } from "drizzle-orm";
 import { zValidator } from "@hono/zod-validator";
 import { coerce, z } from "zod";
 import { DBConnection } from "../../db/database/dbIndex";
-import { SC_TODO_LIST } from "../../../sc_todo";
+import { SC_TODO_LIST } from "../../db/schema/sc_todo";
 import { Hono } from "hono";
 import { off } from "process";
 import { error } from "console";
